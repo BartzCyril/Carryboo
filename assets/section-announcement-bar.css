@@ -1,0 +1,8 @@
+.announcement-bar {
+    background-color: var(--color-secondary-sensitive-3);
+    color: var(--color-primary);
+    padding: 6px 10px;
+    font-weight: 700;
+    line-height: var(--line-height-xxl);
+    text-align: center;
+}
