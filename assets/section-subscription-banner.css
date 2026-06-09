@@ -1,0 +1,192 @@
+.subscription-banner-container {
+    background-color: var(--color-complementary-1);
+}
+
+.subscription-banner__wave {
+    width: 100%;
+    fill: var(--color-complementary-1);
+    position: relative;
+    bottom: 14px;
+    z-index: 1000;
+}
+
+.subscription-banner {
+    background-color: var(--color-complementary-1);
+    min-height: 680px;
+}
+
+.subscription-banner .wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 468px);
+    grid-template-areas:
+        "content image"
+        "args image";
+    column-gap: 60px;
+}
+
+.subscription-banner__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: content;
+}
+
+.subscription-banner__header h2 {
+    background-color: var(--color-neutral-6);
+    padding: 8px 20px;
+    rotate: 1deg;
+    width: fit-content;
+    text-align: center;
+}
+
+.subscription-banner__header h3 {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height);
+    color: var(--color-primary);
+    font-family: var(--font-family-title);
+    font-weight: 600;
+    text-align: center;
+}
+
+.subscription-banner__header p {
+    font-size: var(--font-size-m);
+    line-height: var(--line-height-xl);
+    color: var(--color-neutral-2);
+    font-family: var(--font-family-title);
+    font-weight: 500;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.subscription-banner__img {
+    grid-area: image;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscription-banner__img img {
+    rotate: 1deg;
+    object-fit: cover;
+    max-width: 100%;
+}
+
+.subscription-banner__args {
+    margin-top: 28px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    gap: 12px;
+    grid-area: args;
+    flex-wrap: wrap;
+}
+
+.subscription-banner__arg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 180px;
+    min-width: 0;
+}
+
+.subscription-banner__arg_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.subscription-banner__arg-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    min-width: 36px;
+    background-color: var(--color-neutral-6);
+    border-radius: 50%;
+}
+
+.subscription-banner__arg h4 {
+    margin-top: 12px;
+    font-size: var(--font-size-m);
+    line-height: var(--line-height-xl);
+    color: var(--color-primary);
+    font-family: var(--font-family-title);
+    font-weight: 600;
+    text-align: center;
+}
+
+.subscription-banner__arg p {
+    font-size: var(--font-size-m);
+    line-height: var(--line-height-xxl);
+    color: var(--color-primary);
+    font-family: var(--font-family-general);
+    font-weight: 500;
+    text-align: center;
+}
+
+.subscription-banner__toggle {
+    display: none;
+}
+
+@media (max-width: 820px) {
+    .subscription-banner .wrapper {
+        grid-template-columns: 1fr !important;
+        grid-template-areas:
+            "content"
+            "image"
+            "args" !important;
+    }
+
+    .subscription-banner__args {
+        flex-direction: column;
+    }
+
+    .subscription-banner__arg {
+        flex-wrap: wrap;
+        flex-direction: row !important;
+        position: relative;
+        justify-content: left !important;
+        gap: 12px !important;
+        flex: auto !important;
+    }
+
+    .subscription-banner__arg_header {
+        flex-direction: row !important;
+        gap: 12px !important;
+    }
+
+    .subscription-banner__arg h4 {
+        margin-top: 0 !important;
+    }
+
+    .subscription-banner__arg p {
+        text-align: left !important;
+        margin-left: 48px !important;
+    }
+
+    .subscription-banner__text {
+        width: 100%;
+        display: none;
+    }
+
+    .subscription-banner__toggle {
+        display: block !important;
+        font-size: 24px;
+        color: var(--color-primary);
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .subscription-banner__arg.is-open .subscription-banner__text {
+        display: block;
+    }
+
+    .subscription-banner__img {
+        display: flex;
+        justify-content: center;
+        margin: 28px 0;
+    }
+}

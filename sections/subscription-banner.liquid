@@ -1,0 +1,117 @@
+{{ 'section-subscription-banner.css' | asset_url | stylesheet_tag }}
+
+<section class="subscription-banner-container">
+  {% if template.name == 'index' %}
+    {% comment %} Affiche la vague uniquement sur la page d'accueil. {% endcomment %}
+    <svg
+      class="subscription-banner__wave"
+      width="375"
+      height="14"
+      viewBox="0 0 375 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+    >
+      <path d="M88 4.74293C38.5 0 9.01202 0.233963 0 3.65622V14H375V3.65622C362.109 1.96371 349.021 3.83549 323 2.88274C308.934 2.36771 280.586 -1.10597 256.5 0.356881C233.185 1.77292 219.156 2.82764 191.5 3.65622C155.188 4.74414 126.5 8.43187 88 4.74293Z" fill="#FFF2D4"/>
+    </svg>
+  {% endif %}
+  <div class="subscription-banner">
+    <div class="wrapper">
+      <div class="subscription-banner__header">
+        {% render 'icon-parrot' %}
+        <h2>{{ section.settings.heading }}</h2>
+        <h3>{{ section.settings.subtitle }}</h3>
+        {{ section.settings.text }}
+      </div>
+
+      <div class="subscription-banner__args">
+        {% for block in section.blocks %}
+          <div class="subscription-banner__arg">
+            <div class="subscription-banner__arg_header">
+              {% if block.settings.icon %}
+                <div class="subscription-banner__arg-icon">
+                  {{ block.settings.icon | image_url: width: 18 | image_tag }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <h4>{{ block.settings.title }}</h4>
+              {% endif %}
+
+              <span class="subscription-banner__toggle">+</span>
+            </div>
+
+            <div class="subscription-banner__text">
+              {% if block.settings.text != blank %}
+                {{ block.settings.text }}
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="subscription-banner__img">
+        {% if section.settings.image %}
+          {{ section.settings.image | image_url: width: 468 | image_tag }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Subscription banner",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texte d'accroche"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "argument",
+      "name": "Argument",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icone"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Simple"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texte"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscription banner"
+    }
+  ]
+}
+{% endschema %}
