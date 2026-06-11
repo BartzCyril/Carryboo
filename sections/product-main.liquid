@@ -217,21 +217,19 @@
 
         {%- if product.metafields.custom.composition.value != blank -%}
           {%- assign composition_id = 'Composition-' | append: product.id -%}
-          {%- assign composition_content = product.metafields.custom.composition.value | newline_to_br -%}
+          {%- assign composition_content = product.metafields.custom.composition | metafield_tag -%}
           {% render 'accordion', title: 'Composition clean', content: composition_content, id: composition_id %}
         {%- endif -%}
 
         {%- if product.metafields.custom.precaution.value != blank -%}
           {%- assign precaution_id = 'Precaution-' | append: product.id -%}
-          {%- assign precaution_content = product.metafields.custom.precaution.value | newline_to_br -%}
+          {%- assign precaution_content = product.metafields.custom.precaution | metafield_tag -%}
           {% render 'accordion', title: "Précaution d'emploi", content: precaution_content, id: precaution_id %}
         {%- endif -%}
 
         {%- if product.metafields.custom.conseil_utilisation.value != blank -%}
           {%- assign conseil_utilisation_id = 'Conseil-utilisation-' | append: product.id -%}
-          {%- assign conseil_utilisation_content = product.metafields.custom.conseil_utilisation.value
-            | newline_to_br
-          -%}
+          {%- assign conseil_utilisation_content = product.metafields.custom.conseil_utilisation | metafield_tag -%}
           {% render 'accordion',
             title: "Conseil d'utilisation",
             content: conseil_utilisation_content,
