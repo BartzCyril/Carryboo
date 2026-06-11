@@ -105,4 +105,8 @@ header {
         width: 129px;
         height: 24px;
     }
+
+    .cart-count {
+        right: -12px;
+    }
 }
