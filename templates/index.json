@@ -1,75 +1,102 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
+    "sections": {
+        "hero": {
+            "type": "hero-slider",
+            "blocks": {
+                "slide_1": {
+                    "type": "slide",
+                    "settings": {
+                        "image": "shopify://shop_images/3ffdce9b12c0b7a7802ad9cfa3f930078f51dec4.jpg",
+                        "heading": "Abonnement Carryboo",
+                        "text": "<p>Des couches 0% cochonneries, 100% mignonnerie livrées chez vous dès 0,14€*</p>",
+                        "button_label": "JE M'ABONNE",
+                        "button_link": "shopify://collections/all"
+                    }
+                },
+                "slide_2": {
+                    "type": "slide",
+                    "settings": {
+                        "image": "shopify://shop_images/carryboo-home-page-hero-slider-mobile-V2-good.webp",
+                        "heading": "Abonnement Carryboo",
+                        "text": "<p>Des couches 0% cochonneries, 100% mignonnerie livrées chez vous dès 0,14€*</p>",
+                        "button_label": "JE M'ABONNE",
+                        "button_link": "shopify://collections/all"
+                    }
+                },
+                "slide_3": {
+                    "type": "slide",
+                    "settings": {
+                        "image": "shopify://shop_images/3ffdce9b12c0b7a7802ad9cfa3f930078f51dec4.jpg",
+                        "heading": "Abonnement Carryboo",
+                        "text": "<p>Des couches 0% cochonneries, 100% mignonnerie livrées chez vous dès 0,14€*</p>",
+                        "button_label": "JE M'ABONNE",
+                        "button_link": "shopify://collections/all"
+                    }
+                }
+            },
+            "block_order": ["slide_1", "slide_2", "slide_3"],
+            "settings": {}
         },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
+        "subscription": {
+            "type": "subscription-banner",
+            "blocks": {
+                "argument_JMhEbi": {
+                    "type": "argument",
+                    "settings": {
+                        "icon": "shopify://shop_images/checkbox.svg",
+                        "title": "Sans engagement, résiliable à tout moment",
+                        "text": "<p>Choisissez votre type d'abonnement, la taille et la fréquence : on s'occupe du reste !</p>"
+                    }
+                },
+                "argument_iMXygw": {
+                    "type": "argument",
+                    "settings": {
+                        "icon": "shopify://shop_images/checkbox.svg",
+                        "title": "Jusqu’à -15% d’économies",
+                        "text": "<p>Fini les ruptures de stock. Recevez vos couches directement chez vous, depuis notre Fabrique à couches, selon la fréquence de votre choix.</p>"
+                    }
+                },
+                "argument_jy4hkT": {
+                    "type": "argument",
+                    "settings": {
+                        "icon": "shopify://shop_images/checkbox.svg",
+                        "title": "Livraison ultra-flexible, 100% modifiable",
+                        "text": "<p>Choisissez votre type d'abonnement, la taille et la fréquence : on s'occupe du reste !</p>"
+                    }
+                }
+            },
+            "block_order": ["argument_JMhEbi", "argument_iMXygw", "argument_jy4hkT"],
+            "settings": {
+                "heading": "L'abonnement",
+                "subtitle": "Carryboo: bye bye ﻿la charge mentale !",
+                "text": "<p>Fini les ruptures de stock. Recevez vos couches directement chez vous, depuis notre Fabrique à couches, selon la fréquence de votre choix</p>",
+                "image": "shopify://shop_images/fbc2c6d2760deecb0cef4673ac5a1447f49e083f.png"
+            }
+        },
+        "product_grid_AUcBLA": {
+            "type": "product-grid",
+            "name": "Product grid",
+            "settings": {
+                "heading": "Nos produits",
+                "subtitle": "100% made in France pour bébé",
+                "text": "<p>0% cochonnerie : aucunes substances indésirables dans nos produits</p>",
+                "product_1": "couches-bebe-carryboo-de-nos-regions",
+                "product_2": "couches-bebe-carryboo-nature",
+                "product_3": "couches-bebe-carryboo-de-nos-regions",
+                "product_4": "couches-bebe-carryboo-nature",
+                "button_label": "TOUS NOS PRODUITS",
+                "button_link": "shopify://collections/all"
+            }
         }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
-      "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
-    }
-  },
-  "order": [
-    "image_banner",
-    "featured_collection"
-  ]
+    "order": ["hero", "subscription", "product_grid_AUcBLA"]
 }

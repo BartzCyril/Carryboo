@@ -1,0 +1,27 @@
+{{ 'snippet-pagination-bullets.css' | asset_url | stylesheet_tag }}
+
+{% if bullets > 1 %}
+  {%- assign pagination_aria_label = aria_label | default: 'Navigation du slider' -%}
+  {%- assign pagination_item_label = item_label | default: 'la slide' -%}
+  {%- assign pagination_item_hidden_label = item_hidden_label | default: 'Slide' -%}
+
+  <div class="pagination-bullets" role="group" aria-label="{{ pagination_aria_label }}">
+    {% for bullet in (1..bullets) %}
+      {%- assign bullet_index = forloop.index0 -%}
+      <button
+        type="button"
+        class="pagination-bullet{% if bullet_index == active_index %} is-active{% endif %}"
+        data-slider-dot="{{ bullet_index }}"
+        aria-label="Afficher {{ pagination_item_label }} {{ forloop.index }}"
+        {% if controls_id != blank %}
+          aria-controls="{{ controls_id }}"
+        {% else %}
+          aria-controls="Slide-{{ section_id }}-{{ bullet_index }}"
+        {% endif %}
+        aria-current="{% if bullet_index == active_index %}true{% else %}false{% endif %}"
+      >
+        <span class="visually-hidden">{{ pagination_item_hidden_label }} {{ forloop.index }}</span>
+      </button>
+    {% endfor %}
+  </div>
+{% endif %}

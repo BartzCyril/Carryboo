@@ -1,0 +1,37 @@
+.pagination-bullets {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 34px;
+    left: 50%;
+    z-index: 3;
+    transform: translateX(-50%);
+}
+
+.pagination-bullet {
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    border: 1px solid var(--color-neutral-6);
+    width: 20px;
+    height: 6px;
+    border-radius: 300px;
+    padding: 0;
+    transition: background-color 0.2s ease;
+}
+
+.pagination-bullet.is-active {
+    background-color: var(--color-neutral-6);
+}
+
+.pagination-bullet:focus-visible {
+    outline: 2px solid var(--color-neutral-6);
+    outline-offset: 4px;
+}
+
+.pagination-bullet:hover,
+.pagination-bullet:focus-visible {
+    transform: scaleX(1.15);
+}
