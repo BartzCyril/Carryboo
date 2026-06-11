@@ -1,0 +1,27 @@
+{{ 'snippet-accordion.css' | asset_url | stylesheet_tag }}
+
+{%- assign accordion_title = title | default: '' -%}
+{%- assign accordion_content = content | default: '' -%}
+{%- assign fallback_id = accordion_title | handleize -%}
+{%- assign accordion_id = id | default: fallback_id -%}
+
+{%- if accordion_title != blank and accordion_content != blank -%}
+  <details
+    class="accordion"
+  >
+    <summary
+      class="accordion__summary {% if open %}accordion__summary-open{% else %}accordion__summary-close{% endif %}"
+      aria-controls="{{ accordion_id }}"
+    >
+      <span class="accordion__title">{{ accordion_title }}</span>
+      <span class="accordion__icon" aria-hidden="true">
+        <span class="accordion__icon-open">+</span>
+        <span class="accordion__icon-close">-</span>
+      </span>
+    </summary>
+
+    <div id="{{ accordion_id }}" class="accordion__content">
+      {{ accordion_content }}
+    </div>
+  </details>
+{%- endif -%}
