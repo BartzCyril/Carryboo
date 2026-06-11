@@ -7,7 +7,7 @@
     fill: var(--color-complementary-1);
     position: relative;
     bottom: 14px;
-    z-index: 1000;
+    z-index: 1;
 }
 
 .subscription-banner {
