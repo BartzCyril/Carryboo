@@ -1,0 +1,39 @@
+{{ 'section-collection-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="collection-hero">
+  {% if collection.metafields.custom.hero_image %}
+    {{
+      collection.metafields.custom.hero_image
+      | image_url: width: 1920
+      | image_tag:
+        class: 'collection-hero__image',
+        loading: 'eager',
+        fetchpriority: 'high',
+        preload: true,
+        widths: '750, 1100, 1500, 1920',
+        sizes: '100vw'
+    }}
+  {% endif %}
+  <div class="wrapper">
+    <h1>{{ collection.title }}</h1>
+    {% if collection.metafields.custom.hero_subtitle %}
+      <p>{{ collection.metafields.custom.hero_subtitle }}</p>
+    {% endif %}
+    {% if collection.metafields.custom.hero_link_label and collection.metafields.custom.hero_link_url %}
+      <a href="{{ collection.metafields.custom.hero_link_url }}">
+        {{ collection.metafields.custom.hero_link_label }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection hero",
+  "presets": [
+    {
+      "name": "Collection hero"
+    }
+  ]
+}
+{% endschema %}
