@@ -30,7 +30,7 @@
             <div class="subscription-banner__arg_header">
               {% if block.settings.icon %}
                 <div class="subscription-banner__arg-icon">
-                  {{ block.settings.icon | image_url: width: 18 | image_tag }}
+                  {{ block.settings.icon | image_url: width: 18 | image_tag: loading: 'lazy', widths: '18', sizes: '18px' }}
                 </div>
               {% endif %}
 
@@ -51,7 +51,14 @@
       </div>
       <div class="subscription-banner__img">
         {% if section.settings.image %}
-          {{ section.settings.image | image_url: width: 468 | image_tag }}
+          {{
+            section.settings.image
+            | image_url: width: 936
+            | image_tag:
+              loading: 'lazy',
+              widths: '352, 468, 704, 936',
+              sizes: '(max-width: 768px) 100vw, 468px'
+          }}
         {% endif %}
       </div>
     </div>

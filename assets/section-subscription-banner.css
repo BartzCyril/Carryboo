@@ -69,6 +69,8 @@
     rotate: 1deg;
     object-fit: cover;
     max-width: 100%;
+    height: auto;
+    aspect-ratio: 1;
 }
 
 .subscription-banner__args {
