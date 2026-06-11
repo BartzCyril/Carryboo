@@ -82,12 +82,66 @@
         section.dataset.variantLinksReady = "true";
     };
 
+    /**
+     * Active les flèches de défilement horizontal du sélecteur de tailles mobile.
+     *
+     * @param {HTMLElement} section - Section produit à initialiser.
+     * @returns {void}
+     */
+    const initSizeScroller = (section) => {
+        if (section.dataset.sizeScrollerReady === "true") return;
+
+        const list = section.querySelector("[data-product-size-list]");
+        if (!list) return;
+
+        const buttons = section.querySelectorAll("[data-product-size-scroll]");
+
+        /**
+         * Affiche les flèches seulement lorsqu'il reste du contenu à faire défiler.
+         *
+         * @returns {void}
+         */
+        const updateScrollButtons = () => {
+            const maxScrollLeft = list.scrollWidth - list.clientWidth;
+            const hasOverflow = maxScrollLeft > 1;
+            const isAtStart = list.scrollLeft <= 1;
+            const isAtEnd = list.scrollLeft >= maxScrollLeft - 1;
+
+            buttons.forEach((button) => {
+                const isPrevious = button.dataset.productSizeScroll === "previous";
+                button.classList.toggle("is-hidden", !hasOverflow || (isPrevious ? isAtStart : isAtEnd));
+            });
+        };
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const direction = button.dataset.productSizeScroll === "previous" ? -1 : 1;
+
+                // La distance suit la largeur visible pour garder un déplacement naturel sur mobile.
+                list.scrollBy({
+                    left: direction * list.clientWidth * 0.75,
+                    behavior: "smooth",
+                });
+            });
+        });
+
+        list.addEventListener("scroll", updateScrollButtons);
+        globalThis.addEventListener("resize", updateScrollButtons);
+        updateScrollButtons();
+
+        section.dataset.sizeScrollerReady = "true";
+    };
+
     const initAll = (root = document) => {
         if (root.matches?.("[data-section-id]")) {
             initVariantLinks(root);
+            initSizeScroller(root);
         }
 
-        root.querySelectorAll("[data-section-id]").forEach(initVariantLinks);
+        root.querySelectorAll("[data-section-id]").forEach((section) => {
+            initVariantLinks(section);
+            initSizeScroller(section);
+        });
     };
 
     globalThis.productMain = globalThis.productMain || {};

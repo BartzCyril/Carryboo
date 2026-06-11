@@ -162,31 +162,49 @@
         {%- assign selected_variant = product.selected_or_first_available_variant -%}
         <div class="product-main__sizes">
           <h2 class="product-main__sizes-title">Choisir la taille</h2>
-          <div class="product-main__sizes-list">
-            {%- for variant in product.variants -%}
-              <a
-                href="{{ variant.url }}"
-                class="product-main__size{% if variant.id == selected_variant.id %} is-active{% endif %}"
-                data-product-variant-link
-                {% if variant.id == selected_variant.id %}
-                  aria-current="true"
-                {% endif %}
-              >
-                <h3>{{ variant.title }}</h3>
-                {%- assign unit_count = variant.metafields.custom.unit_count.value | default: 0 | plus: 0 -%}
-                {%- if unit_count > 0 -%}
-                  {%- assign price_per_unit = variant.price | divided_by: unit_count -%}
-                  <span class="product-main__size-price">{{ price_per_unit | money | append: ' / par couche' }}</span>
-                {%- endif -%}
-                <div class="product-main__border-dashed"></div>
-                <div class="product-main__size-count">
-                  {% render 'icon-diaper' %}
+          <div class="product-main__sizes-scroll">
+            <button
+              class="product-main__sizes-control product-main__sizes-control--previous"
+              type="button"
+              aria-label="Voir les tailles précédentes"
+              data-product-size-scroll="previous"
+            >
+              {% render 'icon-left-chevron' %}
+            </button>
+            <div class="product-main__sizes-list" data-product-size-list>
+              {%- for variant in product.variants -%}
+                <a
+                  href="{{ variant.url }}"
+                  class="product-main__size{% if variant.id == selected_variant.id %} is-active{% endif %}"
+                  data-product-variant-link
+                  {% if variant.id == selected_variant.id %}
+                    aria-current="true"
+                  {% endif %}
+                >
+                  <h3>{{ variant.title }}</h3>
+                  {%- assign unit_count = variant.metafields.custom.unit_count.value | default: 0 | plus: 0 -%}
                   {%- if unit_count > 0 -%}
-                    <span>{{ unit_count }} Couches</span>
+                    {%- assign price_per_unit = variant.price | divided_by: unit_count -%}
+                    <span class="product-main__size-price">{{ price_per_unit | money | append: ' / par couche' }}</span>
                   {%- endif -%}
-                </div>
-              </a>
-            {%- endfor -%}
+                  <div class="product-main__border-dashed"></div>
+                  <div class="product-main__size-count">
+                    {% render 'icon-diaper' %}
+                    {%- if unit_count > 0 -%}
+                      <span>{{ unit_count }} Couches</span>
+                    {%- endif -%}
+                  </div>
+                </a>
+              {%- endfor -%}
+            </div>
+            <button
+              class="product-main__sizes-control product-main__sizes-control--next"
+              type="button"
+              aria-label="Voir les tailles suivantes"
+              data-product-size-scroll="next"
+            >
+              {% render 'icon-right-chevron' %}
+            </button>
           </div>
         </div>
       {%- endif -%}
