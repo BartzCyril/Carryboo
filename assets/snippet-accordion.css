@@ -11,9 +11,9 @@
     padding: 16px 20px;
     color: var(--color-primary);
     font-family: var(--font-family-title);
-    font-size: 16px;
+    font-size: var(--font-size-m);
     font-weight: 600;
-    line-height: 140%;
+    line-height: var(--line-height-xl);
     cursor: pointer;
 }
 
@@ -27,15 +27,19 @@
 
 .accordion__title {
     min-width: 0;
+    font-family: var(--font-family-title);
+    font-weight: 600;
+    font-size: var(--font-size-m);
+    line-height: var(--line-height-xl);
 }
 
 .accordion__icon {
     flex: 0 0 auto;
     color: var(--color-primary);
     font-family: var(--font-family-title);
-    font-size: 16px;
+    font-size: var(--font-size-m);
     font-weight: 600;
-    line-height: 140%;
+    line-height: var(--line-height-xl);
 }
 
 .accordion__icon-close {
