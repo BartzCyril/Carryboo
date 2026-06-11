@@ -1,1 +1,53 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"text","settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"description":{"type":"description","settings":{}},"share":{"type":"share","settings":{"share_label":"Share"}}},"block_order":["vendor","title","price","variant_picker","quantity_selector","buy_buttons","description","share"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"large","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"stacked","mobile_thumbnails":"hide","media_position":"left","image_zoom":"lightbox","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"related-products":{"type":"related-products","settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"padding_top":36,"padding_bottom":28}}},"order":["main","related-products"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "main": {
+            "type": "product-main"
+        },
+        "subscription": {
+            "type": "subscription-banner",
+            "blocks": {
+                "argument_AiLXHJ": {
+                    "type": "argument",
+                    "settings": {
+                        "icon": "shopify://shop_images/checkbox.svg",
+                        "title": "Sans engagement, résiliable à tout moment",
+                        "text": "<p>Choisissez votre type d'abonnement, la taille et la fréquence : on s'occupe du reste !</p>"
+                    }
+                },
+                "argument_3tdczE": {
+                    "type": "argument",
+                    "settings": {
+                        "icon": "shopify://shop_images/checkbox.svg",
+                        "title": "Jusqu’à -15% d’économies",
+                        "text": "<p>Fini les ruptures de stock. Recevez vos couches directement chez vous, depuis notre Fabrique à couches, selon la fréquence de votre choix.</p>"
+                    }
+                },
+                "argument_dG3EyP": {
+                    "type": "argument",
+                    "settings": {
+                        "icon": "shopify://shop_images/checkbox.svg",
+                        "title": "Livraison ultra-flexible, 100% modifiable",
+                        "text": "<p>Choisissez votre type d'abonnement, la taille et la fréquence : on s'occupe du reste !</p>"
+                    }
+                }
+            },
+            "block_order": ["argument_AiLXHJ", "argument_3tdczE", "argument_dG3EyP"],
+            "settings": {
+                "heading": "L'abonnement",
+                "subtitle": "Carryboo: bye bye ﻿la charge mentale !",
+                "text": "<p>Fini les ruptures de stock. Recevez vos couches directement chez vous, depuis notre Fabrique à couches, selon la fréquence de votre choix</p>",
+                "image": "shopify://shop_images/fbc2c6d2760deecb0cef4673ac5a1447f49e083f.png"
+            }
+        }
+    },
+    "order": ["main", "subscription"]
+}

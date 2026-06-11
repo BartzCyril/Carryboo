@@ -1,0 +1,244 @@
+{{ 'section-product-main.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-gallery.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'variant-selector.js' | asset_url }}" defer="defer"></script>
+
+<section class="product-main" data-section-id="{{ section.id }}">
+  <div class="wrapper">
+    {%- assign first_media = product.media.first -%}
+    {%- assign active_media = product.selected_or_first_available_variant.featured_media
+      | default: product.featured_media
+      | default: first_media
+    -%}
+    {%- assign active_media_index = 0 -%}
+    {%- for media in product.media -%}
+      {%- if media.id == active_media.id -%}
+        {%- assign active_media_index = forloop.index0 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if product.media.size > 0 -%}
+      <div class="product-main__gallery" data-product-gallery>
+        {%- if product.media.size > 1 -%}
+          <div class="product-main__thumbnails-container">
+            <button
+              type="button"
+              class="product-main__gallery-control product-main__gallery-control--previous"
+              data-gallery-previous
+              aria-label="Afficher l'image précédente"
+            >
+              <span aria-hidden="true">{% render 'icon-left-chevron' %}</span>
+            </button>
+            <div class="product-main__thumbnails" aria-label="Images du produit">
+              {%- for media in product.media -%}
+                {%- assign media_alt = media.alt | default: product.title -%}
+                <button
+                  type="button"
+                  class="product-main__thumbnail{% if media.id == active_media.id %} is-active{% endif %}"
+                  data-gallery-thumb="{{ media.id }}"
+                  aria-current="{% if media.id == active_media.id %}true{% else %}false{% endif %}"
+                  aria-label="Afficher l'image {{ forloop.index }} sur {{ product.media.size }}"
+                >
+                  {{
+                    media.preview_image
+                    | image_url: width: 106
+                    | image_tag: loading: 'lazy', widths: '106', sizes: '106px', alt: media_alt
+                  }}
+                </button>
+              {%- endfor -%}
+            </div>
+            <button
+              type="button"
+              class="product-main__gallery-control product-main__gallery-control--next"
+              data-gallery-next
+              aria-label="Afficher l'image suivante"
+            >
+              <span aria-hidden="true">{% render 'icon-right-chevron' %}</span>
+            </button>
+          </div>
+        {%- endif -%}
+        {%- assign gallery_controls_id = 'Product-gallery-' | append: section.id -%}
+        <div id="{{ gallery_controls_id }}" class="product-main__image">
+          <div class="product-main__media-track" data-gallery-track>
+            {%- for media in product.media -%}
+              {%- assign media_alt = media.alt | default: product.title -%}
+              <div
+                class="product-main__media{% if media.id == active_media.id %} is-active{% endif %}"
+                data-gallery-media
+                data-media-id="{{ media.id }}"
+              >
+                {%- if media.id == active_media.id -%}
+                  {{
+                    media.preview_image
+                    | image_url: width: 1124
+                    | image_tag:
+                      loading: 'eager',
+                      fetchpriority: 'high',
+                      preload: true,
+                      widths: '360, 562, 720, 900, 1124',
+                      sizes: '(max-width: 768px) min(80vw, 562px), (min-width: 1024px) 562px, 100vw',
+                      alt: media_alt
+                  }}
+                {%- else -%}
+                  {{
+                    media.preview_image
+                    | image_url: width: 1124
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '360, 562, 720, 900, 1124',
+                      sizes: '(max-width: 768px) min(80vw, 562px), (min-width: 1024px) 562px, 100vw',
+                      alt: media_alt
+                  }}
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+          {% render 'pagination-bullets',
+            bullets: product.media.size,
+            active_index: active_media_index,
+            section_id: section.id,
+            controls_id: gallery_controls_id,
+            aria_label: 'Navigation des images du produit',
+            item_label: "l'image",
+            item_hidden_label: 'Image'
+          %}
+        </div>
+      </div>
+    {%- elsif product.featured_image -%}
+      <div class="product-main__gallery">
+        <div class="product-main__image">
+          {{
+            product.featured_image
+            | image_url: width: 1124
+            | image_tag:
+              loading: 'eager',
+              fetchpriority: 'high',
+              preload: true,
+              widths: '360, 562, 720, 900, 1124',
+              sizes: '(max-width: 768px) min(80vw, 562px), (min-width: 1024px) 562px, 100vw',
+              alt: product.featured_image.alt
+          }}
+        </div>
+      </div>
+    {%- endif -%}
+    <div class="product-main__container">
+      <div class="product-main__content">
+        <h1 class="product-main__title">{{ product.title }}</h1>
+        <div class="product-main__price-evaluation-container">
+          <div class="product-main__price">
+            À partir de
+            {% if product.compare_at_price %}
+              <span class="product-main__price-compare">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+            <span class="product-main__price-value">{{ product.price | money }}</span>
+          </div>
+          {%- assign rating_score = product.metafields.custom.rating_score.value | default: 0 | times: 1 -%}
+          {%- assign rating_count = product.metafields.custom.rating_count.value | default: 0 -%}
+          <div class="product-main__evaluation">
+            <div class="product-main__evaluation-stars">
+              {% for i in (1..5) %}
+                {%- assign star_position = i | minus: 1 -%}
+                {%- assign star_fill = rating_score | minus: star_position | times: 100 -%}
+                {%- if star_fill > 100 -%}
+                  {%- assign star_fill = 100 -%}
+                {%- elsif star_fill < 0 -%}
+                  {%- assign star_fill = 0 -%}
+                {%- endif -%}
+                <div
+                  class="product-main__evaluation-star"
+                  style="--star-fill: {{ star_fill }}%;"
+                  aria-hidden="true"
+                >
+                  {% render 'icon-star' %}
+                </div>
+              {% endfor %}
+            </div>
+            <span class="product-main__evaluation-rating">
+              {{- rating_score | append: '/5 - ' | append: rating_count | append: ' avis' -}}
+            </span>
+          </div>
+        </div>
+        <div class="product-main__description">{{ product.description }}</div>
+      </div>
+      {%- if product.variants.size > 0 -%}
+        {%- assign selected_variant = product.selected_or_first_available_variant -%}
+        <div class="product-main__sizes">
+          <h2 class="product-main__sizes-title">Choisir la taille</h2>
+          <div class="product-main__sizes-list">
+            {%- for variant in product.variants -%}
+              <a
+                href="{{ variant.url }}"
+                class="product-main__size{% if variant.id == selected_variant.id %} is-active{% endif %}"
+                data-product-variant-link
+                {% if variant.id == selected_variant.id %}
+                  aria-current="true"
+                {% endif %}
+              >
+                <h3>{{ variant.title }}</h3>
+                {%- assign unit_count = variant.metafields.custom.unit_count.value | default: 0 | plus: 0 -%}
+                {%- if unit_count > 0 -%}
+                  {%- assign price_per_unit = variant.price | divided_by: unit_count -%}
+                  <span class="product-main__size-price">{{ price_per_unit | money | append: ' / par couche' }}</span>
+                {%- endif -%}
+                <div class="product-main__border-dashed"></div>
+                <div class="product-main__size-count">
+                  {% render 'icon-diaper' %}
+                  {%- if unit_count > 0 -%}
+                    <span>{{ unit_count }} Couches</span>
+                  {%- endif -%}
+                </div>
+              </a>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- assign add_to_cart_label = product.selected_or_first_available_variant.price | money -%}
+      {% if product.selected_or_first_available_variant.compare_at_price %}
+        {%- assign compare_at_price = product.selected_or_first_available_variant.compare_at_price -%}
+        {%- assign compare_at_price_label = compare_at_price | money -%}
+        {%- assign add_to_cart_label = compare_at_price_label | append: ' / ' | append: add_to_cart_label -%}
+      {% endif -%}
+
+      <button
+        class="button button-primary button-large product-main__add-to-cart"
+        data-add-to-cart
+        data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      >
+        <span class="product-main__add-to-cart-label" data-add-to-cart-label>
+          Ajouter au panier {{ add_to_cart_label }}
+        </span>
+        <span class="product-main__add-to-cart-loader" aria-hidden="true"></span>
+      </button>
+
+      <div class="product-main__accordions">
+        {%- if product.description != blank -%}
+          {%- assign description_id = 'Description-' | append: product.id -%}
+          {% render 'accordion', title: 'Description du produit', content: product.description, id: description_id %}
+        {%- endif -%}
+
+        {%- if product.metafields.custom.composition.value != blank -%}
+          {%- assign composition_id = 'Composition-' | append: product.id -%}
+          {%- assign composition_content = product.metafields.custom.composition.value | newline_to_br -%}
+          {% render 'accordion', title: 'Composition clean', content: composition_content, id: composition_id %}
+        {%- endif -%}
+
+        {%- if product.metafields.custom.precaution.value != blank -%}
+          {%- assign precaution_id = 'Precaution-' | append: product.id -%}
+          {%- assign precaution_content = product.metafields.custom.precaution.value | newline_to_br -%}
+          {% render 'accordion', title: "Précaution d'emploi", content: precaution_content, id: precaution_id %}
+        {%- endif -%}
+
+        {%- if product.metafields.custom.conseil_utilisation.value != blank -%}
+          {%- assign conseil_utilisation_id = 'Conseil-utilisation-' | append: product.id -%}
+          {%- assign conseil_utilisation_content = product.metafields.custom.conseil_utilisation.value
+            | newline_to_br
+          -%}
+          {% render 'accordion',
+            title: "Conseil d'utilisation",
+            content: conseil_utilisation_content,
+            id: conseil_utilisation_id
+          %}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
