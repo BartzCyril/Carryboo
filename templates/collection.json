@@ -1,36 +1,70 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "sections": {
-    "banner": {
-      "type": "main-collection-banner",
-      "settings": {
-        "show_collection_description": true,
-        "show_collection_image": false,
-        "color_scheme": "scheme-1"
-      }
+    "sections": {
+        "collection_hero_HND8ng": {
+            "type": "collection-hero",
+            "name": "Collection hero",
+            "settings": {}
+        },
+        "product_grid": {
+            "type": "product-grid",
+            "settings": {
+                "heading": "",
+                "subtitle": "",
+                "text": "",
+                "product_1": "couches-bebe-carryboo-de-nos-regions",
+                "product_2": "couches-bebe-carryboo-nature",
+                "product_3": "couches-bebe-carryboo-de-nos-regions",
+                "product_4": "couches-bebe-carryboo-nature",
+                "button_label": "",
+                "button_link": ""
+            }
+        },
+        "subscription_banner_K4UEwx": {
+            "type": "subscription-banner",
+            "blocks": {
+                "argument_yyVQ8k": {
+                    "type": "argument",
+                    "settings": {
+                        "icon": "shopify://shop_images/checkbox.svg",
+                        "title": "Sans engagement, résiliable à tout moment",
+                        "text": "<p>Choisissez votre type d'abonnement, la taille et la fréquence : on s'occupe du reste !<br/><br/></p>"
+                    }
+                },
+                "argument_q38fea": {
+                    "type": "argument",
+                    "settings": {
+                        "icon": "shopify://shop_images/checkbox.svg",
+                        "title": "Jusqu’à -15% d’économies",
+                        "text": "<p>Fini les ruptures de stock. Recevez vos couches directement chez vous, depuis notre Fabrique à couches, selon la fréquence de votre choix.<br/><br/></p>"
+                    }
+                },
+                "argument_6HGPFJ": {
+                    "type": "argument",
+                    "settings": {
+                        "icon": "shopify://shop_images/checkbox.svg",
+                        "title": "Livraison ultra-flexible, 100% modifiable",
+                        "text": "<p>Choisissez votre type d'abonnement, la taille et la fréquence : on s'occupe du reste !<br/><br/></p>"
+                    }
+                }
+            },
+            "block_order": ["argument_yyVQ8k", "argument_q38fea", "argument_6HGPFJ"],
+            "name": "Subscription banner",
+            "settings": {
+                "heading": "L'abonnement",
+                "subtitle": "Carryboo: bye bye ﻿la charge mentale !",
+                "text": "<p>Fini les ruptures de stock. Recevez vos couches directement chez vous, depuis notre Fabrique à couches, selon la fréquence de votre choix<br/><br/></p>",
+                "image": "shopify://shop_images/fbc2c6d2760deecb0cef4673ac5a1447f49e083f.png"
+            }
+        }
     },
-    "product-grid": {
-      "type": "main-collection-product-grid",
-      "settings": {
-        "products_per_page": 16,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "enable_filtering": true,
-        "filter_type": "horizontal",
-        "enable_sorting": true,
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    }
-  },
-  "order": [
-    "banner",
-    "product-grid"
-  ]
+    "order": ["collection_hero_HND8ng", "product_grid", "subscription_banner_K4UEwx"]
 }

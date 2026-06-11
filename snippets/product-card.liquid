@@ -1,0 +1,97 @@
+{{ 'snippet-product-card.css' | asset_url | stylesheet_tag }}
+
+<div class="product-card">
+  <div class="product-card__images" data-product-card-images="{{ product.images | json | escape }}">
+    {% if product.images.size > 1 %}
+      <div class="product-card__images-previous">{% render 'icon-left-chevron' %}</div>
+    {% endif %}
+
+    {% assign product_card_image = product.featured_image | default: product.images.first %}
+    {% if product_card_image %}
+      {%- assign product_card_alt = product_card_image.alt | default: product.title | escape -%}
+      <a class="product-card__image-link" href="{{ product.url }}" aria-label="Voir la fiche produit {{ product.title | escape }}">
+        {{
+          product_card_image
+          | image_url: width: 600
+          | image_tag:
+            class: 'product-card__image is-active',
+            loading: 'lazy',
+            widths: '276, 400, 552, 600',
+            sizes: '(max-width: 820px) calc(100vw - 64px), 276px',
+            alt: product_card_alt
+        }}
+      </a>
+    {% endif %}
+
+    {% if product.images.size > 1 %}
+      <div class="product-card__images-next">{% render 'icon-right-chevron' %}</div>
+    {% endif %}
+  </div>
+  <div class="product-card__content">
+    {% if product.tags contains 'nouveau' %}
+      <span
+        class="product-card__tag"
+        style="background-color: {% if index == 0 %}var(--color-secondary-sensitive-3){% else %}var(--color-complementary-1){% endif %}"
+        >NOUVEAU</span
+      >
+    {% endif %}
+    <h4 class="product-card__title">
+      {{ product.title }}
+    </h4>
+    <div class="product-card__price">
+      à partir de <span class="product-card__price-value">{{ product.price | money }}</span>
+    </div>
+    {% if product.images.size > 1 %}
+      <div class="product-card__sizes" data-product-card-sizes>
+        <h5 class="product-card__sizes-title">Tailles</h5>
+        <div class="product-card__sizes-gallery">
+          <button
+            class="product-card__sizes-chevron product-card__sizes-chevron--previous"
+            type="button"
+            aria-label="Voir les tailles précédentes"
+            data-product-card-sizes-previous
+          >
+            {% render 'icon-left-chevron' %}
+          </button>
+
+          <div class="product-card__sizes-list" data-product-card-sizes-list>
+            {% for image in product.images %}
+              <button
+                class="product-card__sizes-item"
+                type="button"
+                aria-label="Voir l'image {{ forloop.index }} de {{ product.title | escape }}"
+                data-product-card-size-index="{{ forloop.index0 }}"
+                data-product-card-image-src="{{ image | image_url: width: 600 }}"
+                data-product-card-image-srcset="{{ image | image_url: width: 276 }} 276w, {{ image | image_url: width: 400 }} 400w, {{ image | image_url: width: 552 }} 552w, {{ image | image_url: width: 600 }} 600w"
+                data-product-card-image-sizes="(max-width: 820px) calc(100vw - 64px), 276px"
+                data-product-card-image-alt="{{ image.alt | default: product.title | escape }}"
+              >
+                {{
+                  image
+                  | image_url: width: 120
+                  | image_tag:
+                    width: 80,
+                    height: 80,
+                    loading: 'lazy',
+                    widths: '62, 80, 120',
+                    sizes: '62px',
+                    alt: image.alt,
+                    class: 'product-card__sizes-image'
+                }}
+              </button>
+            {% endfor %}
+          </div>
+
+          <button
+            class="product-card__sizes-chevron product-card__sizes-chevron--next"
+            type="button"
+            aria-label="Voir les tailles suivantes"
+            data-product-card-sizes-next
+          >
+            {% render 'icon-right-chevron' %}
+          </button>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

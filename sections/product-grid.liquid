@@ -1,0 +1,183 @@
+{{ 'section-product-grid.css' | asset_url | stylesheet_tag }}
+
+<section class="product-grid-container {% if template.name == 'index' %}product-grid-container--index{% endif %}">
+  {%- liquid
+    assign product_count = 0
+
+    if section.settings.product_1 != blank
+      assign product_count = product_count | plus: 1
+    endif
+
+    if section.settings.product_2 != blank
+      assign product_count = product_count | plus: 1
+    endif
+
+    if section.settings.product_3 != blank
+      assign product_count = product_count | plus: 1
+    endif
+
+    if section.settings.product_4 != blank
+      assign product_count = product_count | plus: 1
+    endif
+  -%}
+
+  {% if template.name == 'index' %}
+    <svg
+      class="subscription-banner__wave"
+      width="375"
+      height="14"
+      viewBox="0 0 375 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+    >
+      <path d="M88 4.74293C38.5 0 9.01202 0.233963 0 3.65622V14H375V3.65622C362.109 1.96371 349.021 3.83549 323 2.88274C308.934 2.36771 280.586 -1.10597 256.5 0.356881C233.185 1.77292 219.156 2.82764 191.5 3.65622C155.188 4.74414 126.5 8.43187 88 4.74293Z" fill="#FFF2D4"/>
+    </svg>
+  {% endif %}
+  <div class="product-grid"{% if template.name == 'index' %} data-slider data-slider-media="(max-width: 820px)"{% endif %}>
+    <div class="wrapper">
+      <div class="product-grid__header">
+        {% if section.settings.heading != blank %} {% render 'icon-love' %} {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.subtitle != blank %}
+          <h3>{{ section.settings.subtitle }}</h3>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="product-grid__text">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="product-grid__items">
+        {%- assign slide_index = 0 -%}
+
+        {% if section.settings.product_1 %}
+          <div
+            id="Slide-{{ section.id }}-{{ slide_index }}"
+            class="product-grid__item{% if slide_index == 0 %} is-active{% endif %}"
+            data-slide
+            aria-hidden="false"
+          >
+            {% render 'product-card', product: section.settings.product_1, index: slide_index %}
+          </div>
+          {%- assign slide_index = slide_index | plus: 1 -%}
+        {% endif %}
+
+        {% if section.settings.product_2 %}
+          <div
+            id="Slide-{{ section.id }}-{{ slide_index }}"
+            class="product-grid__item{% if slide_index == 0 %} is-active{% endif %}"
+            data-slide
+            aria-hidden="false"
+          >
+            {% render 'product-card', product: section.settings.product_2, index: slide_index %}
+          </div>
+          {%- assign slide_index = slide_index | plus: 1 -%}
+        {% endif %}
+
+        {% if section.settings.product_3 %}
+          <div
+            id="Slide-{{ section.id }}-{{ slide_index }}"
+            class="product-grid__item{% if slide_index == 0 %} is-active{% endif %}"
+            data-slide
+            aria-hidden="false"
+          >
+            {% render 'product-card', product: section.settings.product_3, index: slide_index %}
+          </div>
+          {%- assign slide_index = slide_index | plus: 1 -%}
+        {% endif %}
+
+        {% if section.settings.product_4 %}
+          <div
+            id="Slide-{{ section.id }}-{{ slide_index }}"
+            class="product-grid__item{% if slide_index == 0 %} is-active{% endif %}"
+            data-slide
+            aria-hidden="false"
+          >
+            {% render 'product-card', product: section.settings.product_4, index: slide_index %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if template.name == 'index' -%}
+        {%- render 'pagination-bullets',
+          bullets: product_count,
+          section_id: section.id,
+          active_index: 0,
+          aria_label: 'Navigation des produits',
+          item_label: 'le produit',
+          item_hidden_label: 'Produit'
+        %}
+      {% endif %}
+
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <a class="button button-primary button-large" href="{{ section.settings.button_link }}">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'slider.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Product grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texte d'accroche"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Produit 1"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Produit 2"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "Produit 3"
+    },
+    {
+      "type": "product",
+      "id": "product_4",
+      "label": "Produit 4"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texte CTA"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "URL du CTA"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product grid"
+    }
+  ]
+}
+{% endschema %}
