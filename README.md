@@ -7,6 +7,8 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)
 
+**👉 Voir le site : [cyril-test-technique-gradiweb-ehgwgvux.myshopify.com](https://cyril-test-technique-gradiweb-ehgwgvux.myshopify.com/)**
+
 ## Sujet
 
 Test technique réalisé en juin 2026 : intégrer les maquettes desktop et mobile d'une boutique (marque Carryboo) dans un thème Shopify, sans partir d'un thème existant, en rendant les contenus administrables par le marchand.
