@@ -8,7 +8,8 @@
 ![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)
 
 **👉 Voir le site : [cyril-test-technique-gradiweb-ehgwgvux.myshopify.com](https://cyril-test-technique-gradiweb-ehgwgvux.myshopify.com/)**
-** Mot de passe de la boutique : Graditest* **
+
+**🔑 Mot de passe de la boutique :** `Graditest*`
 
 ## Sujet
 
